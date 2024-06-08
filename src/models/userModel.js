@@ -16,6 +16,20 @@ const userModel = {
             });
         });
     },
+
+    findByEmail: async (email) => {
+        const query = `SELECT * FROM usuarios WHERE email = ?`;
+
+        return new Promise((resolve, reject) => {
+            db.get(query, [email], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
+    }
 };
 
 module.exports = userModel;
