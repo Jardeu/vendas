@@ -1,18 +1,21 @@
 const userModel = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 const userService = {
     //Registrar um usuário
-    create: (user, callback) => {
+    createUser: async (user) => {
         if (!user.email || !user.senha) {
-            return callback(new Error('Todos os campos são obrigatórios.'));
+            throw new Error('Todos os campos são obrigatórios.');
         }
-        userModel.create(user, callback);
+
+        const { email, senha } = user;
+        const hashedPassword = await bcrypt.hash(senha, 10);
+        const newUser = { email: email, senha: hashedPassword };
+
+        await userModel.createUser(newUser);
     },
 
-    //Fazer login
-    login: (callback) => {
-        console.log("Ainda não implementado");
-    },
+
 };
 
 module.exports = userService;
