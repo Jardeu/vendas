@@ -6,7 +6,7 @@ const userController = {
         try {
             const newUser = req.body;
             await userService.register(newUser);
-            res.status(201).json({ message: "Usuário criado com sucesso." });
+            res.status(201).json({ message: 'Usuário criado com sucesso.' });
         }
         catch (err) {
             res.status(400).json({ message: err.message });

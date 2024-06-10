@@ -33,7 +33,7 @@ const userService = {
         }
 
         const token = createToken(savedUser);
-        return { message: "Usuário autenticado com sucesso.", token };
+        return { message: 'Usuário autenticado com sucesso.', token };
     }
 };
 

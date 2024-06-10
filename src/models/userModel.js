@@ -11,7 +11,7 @@ const userModel = {
                 if (err) {
                     reject(new Error('Não foi possível criar o usuário.'));
                 } else {
-                    resolve({ id: this.lastID, message: "Usuário criado com sucesso." });
+                    resolve({ id: this.lastID, message: 'Usuário criado com sucesso.' });
                 }
             });
         });
