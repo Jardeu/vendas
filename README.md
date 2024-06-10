@@ -98,6 +98,7 @@ vendas/
 ├── package.json          # Dependências do projeto
 ├── README.md             # Documentação do projeto
 └── server.js             # Configuração do servidor
+```
 
 ## Rotas da API
 
