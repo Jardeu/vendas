@@ -24,7 +24,7 @@ db.serialize(() => {
         produto TEXT NOT NULL,
         valor DECIMAL NOT NULL,
         data_venda DATE NOT NULL,
-        user_id TEXT NOT NULL,
+        user_id INTEGER NOT NULL,
         FOREIGN KEY(user_id) REFERENCES usuarios(id)
     )`);
 });

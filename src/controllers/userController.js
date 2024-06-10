@@ -5,8 +5,13 @@ const userController = {
     register: async (req, res) => {
         try {
             const newUser = req.body;
-            await userService.register(newUser);
-            res.status(201).json({ message: 'Usuário criado com sucesso.' });
+
+            if (!newUser.email || !newUser.senha) {
+                res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
+            }
+
+            const user = await userService.register(newUser);
+            res.status(201).json({ message: 'Usuário criado com sucesso.', user });
         }
         catch (err) {
             res.status(400).json({ message: err.message });
@@ -17,6 +22,11 @@ const userController = {
     login: async (req, res) => {
         try {
             const user = req.body;
+
+            if (!user.email || !user.senha) {
+                res.status(401).json({ message: 'Email ou senha incorretos.' });
+            }
+
             const result = await userService.login(user);
             res.status(200).json(result);
         } catch (err) {

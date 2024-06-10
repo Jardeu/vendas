@@ -15,4 +15,6 @@ router.put('/:id', salesController.updateSale);
 // Rota para excluir uma venda existente
 router.delete('/:id', salesController.deleteSale);
 
+router.get('/pdf', salesController.generateSalesPDF);
+
 module.exports = router;

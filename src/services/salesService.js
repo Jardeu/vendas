@@ -1,17 +1,20 @@
 const salesModel = require('../models/salesModel');
+const generatePDF = require('../utils/generatePDF');
 
 const salesService = {
     // Adicionar uma venda
     createSale: async (sale) => {
-        if (!sale.nome_cliente || !sale.produto || !sale.valor || !sale.data_venda) {
-            throw new Error('Todos os campos são obrigatórios.');
+        const { nome_cliente, produto, valor, data_venda, user_id } = sale;
+
+        if (valor <= 0) {
+            throw new Error('O valor da venda deve ser positivo.');
         }
 
-        const { nome_cliente, produto, valor, data_venda, user_id } = sale;
         const newSale = { nome_cliente, produto, valor, data_venda, user_id };
 
-        await salesModel.createSale(newSale);
+        return await salesModel.createSale(newSale);
     },
+
     // Consultar vendas
     findAllSales: async (user_id) => {
         return await salesModel.findAll(user_id);
@@ -19,8 +22,8 @@ const salesService = {
 
     // Editar venda
     updateSale: async (id, updatedFields) => {
-        if (!id) {
-            throw new Error('Não foi possível atualizar a venda.');
+        if (updatedFields.valor && updatedFields.valor <= 0) {
+            throw new Error('O valor da venda deve ser positivo.');
         }
 
         return await salesModel.updateSale(id, updatedFields);
@@ -28,11 +31,18 @@ const salesService = {
 
     // Excluir venda
     deleteSale: async (id) => {
-        if (!id) {
-            throw new Error('Não foi possível excluir a venda.');
+        return await salesModel.deleteSale(id);
+    },
+
+    // Gerar PDF
+    generateSalesPDF: async (userId, startDate, endDate) => {
+        const sales = await salesModel.findByDateInterval(userId, startDate, endDate);
+
+        if (!sales || sales.length === 0) {
+            throw new Error('Nenhuma venda encontrada para o período especificado.');
         }
 
-        await salesModel.deleteSale(id);
+        return generatePDF(sales, startDate, endDate);
     }
 };
 

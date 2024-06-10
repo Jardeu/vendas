@@ -5,24 +5,17 @@ const { createToken } = require('../utils/jwt');
 const userService = {
     //Registrar um usuário
     register: async (user) => {
-        if (!user.email || !user.senha) {
-            throw new Error('Todos os campos são obrigatórios.');
-        }
-
         const { email, senha } = user;
         const hashedPassword = await bcrypt.hash(senha, 10);
         const newUser = { email, senha: hashedPassword };
 
-        await userModel.createUser(newUser);
+        return await userModel.createUser(newUser);
     },
 
     //Fazer login
     login: async (user) => {
-        if (!user.email || !user.senha) {
-            throw new Error('Email ou senha incorretos.');
-        }
-
         const savedUser = await userModel.findByEmail(user.email);
+
         if (!savedUser) {
             throw new Error('Email ou senha incorretos.');
         }
