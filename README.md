@@ -117,8 +117,7 @@ vendas/
 
 ## Uso
 
-- Utilize um cliente HTTP, como Postman ou Insomnia, para fazer requisições HTTP para as rotas definidas na aplicação. Consulte a documentação das rotas para mais detalhes.
-
+- Utilize um cliente HTTP, como Postman ou Insomnia, para fazer requisições HTTP para as rotas definidas na aplicação.
 ## Autenticação
 
 - A API usa JSON Web Tokens (JWT) para autenticação. Após o login, o token deve ser incluído no cabeçalho Authorization de todas as requisições para rotas protegidas.
