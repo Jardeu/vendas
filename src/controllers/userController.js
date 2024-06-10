@@ -5,8 +5,8 @@ const userController = {
     register: async (req, res) => {
         try {
             const newUser = req.body;
-            const result = await userService.createUser(newUser);
-            res.status(201).json(result);
+            await userService.register(newUser);
+            res.status(201).json({ message: "Usuário criado com sucesso." });
         }
         catch (err) {
             res.status(400).json({ message: err.message });
@@ -23,7 +23,7 @@ const userController = {
             if (err.message === 'E-mail ou senha incorretos.') {
                 res.status(401).json({ message: err.message });
             } else {
-                res.status(500).json({ message: err.message });
+                res.status(500).json({ message: 'Erro ao fazer login.' });
             }
         }
     },

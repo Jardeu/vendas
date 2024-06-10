@@ -9,7 +9,7 @@ const userModel = {
         return new Promise((resolve, reject) => {
             db.run(query, [email, senha], function (err) {
                 if (err) {
-                    reject(err);
+                    reject(new Error('Não foi possível criar o usuário.'));
                 } else {
                     resolve({ id: this.lastID, message: "Usuário criado com sucesso." });
                 }
@@ -23,7 +23,7 @@ const userModel = {
         return new Promise((resolve, reject) => {
             db.get(query, [email], (err, row) => {
                 if (err) {
-                    reject(err);
+                    reject(new Error('Não foi possível encontrar o usuário.'));
                 } else {
                     resolve(row);
                 }
