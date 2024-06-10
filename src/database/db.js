@@ -17,6 +17,16 @@ db.serialize(() => {
         email TEXT UNIQUE NOT NULL,
         senha TEXT NOT NULL
     )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS vendas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome_cliente TEXT NOT NULL,
+        produto TEXT NOT NULL,
+        valor DECIMAL NOT NULL,
+        data_venda DATE NOT NULL,
+        user_id TEXT NOT NULL,
+        FOREIGN KEY(user_id) REFERENCES usuarios(id)
+    )`);
 });
 
 module.exports = db;
