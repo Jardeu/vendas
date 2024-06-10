@@ -21,7 +21,7 @@ const generatePDF = (sales, startDate, endDate) => {
     const docDefinition = {
         content: [
             {
-                text: `Relatório de Vendas de ${startDate} até ${endDate}`,
+                text: `Relatório de Vendas de ${moment(startDate).format('DD-MM-YYYY')} até ${moment(endDate).format('DD-MM-YYYY')}`,
                 style: 'header'
             },
             {
