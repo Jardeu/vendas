@@ -11,11 +11,8 @@ Este projeto foi desenvolvido usando Node.js e SQLite e oferece operações CRUD
 - [Configuração e Execução](#configuração-e-execução)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Rotas da API](#rotas-da-api)
+- [Uso](#uso)
 - [Autenticação](#autenticação)
-- [Modelos de Dados](#modelos-de-dados)
-- [Testes](#testes)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Descrição do Projeto
 
